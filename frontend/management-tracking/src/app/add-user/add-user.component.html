@@ -1,0 +1,15 @@
+<div class="card">
+    <h2>Create User</h2>
+    <form (ngSubmit)="createUser()">
+        <input [(ngModel)]="user.name" name="name" placeholder="Name" required>
+        <input [(ngModel)]="user.contactInfo" name="contactInfo" placeholder="Contact Info" required>
+        <input [(ngModel)]="user.district" name="district" placeholder="District" required>
+        <input [(ngModel)]="user.employeeId" name="employeeId" placeholder="Employee ID" required>
+        <input [(ngModel)]="user.password" name="password" type="password" placeholder="Password" required>
+        <select [(ngModel)]="user.role" name="role" required>
+            <option value="">Select Role</option>
+            <option value="employee">employee</option>
+        </select>
+        <button type="submit">Create</button>
+    </form>
+</div>

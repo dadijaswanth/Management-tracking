@@ -1,0 +1,90 @@
+
+<div class="control-container">
+    <div class="dropdown-container">
+        <label for="dataSelect">Select Data: </label>
+        <select id="dataSelect" [(ngModel)]="currentData" (ngModelChange)="select($event)">
+            <option value="">Select Data</option>
+            <option value="employeeData">Employee Data</option>
+            <option value="attendance">Attendance Management</option>
+            <option value="leave">Leave Management</option>
+        </select>
+    </div>
+    <div class="buttons-container">
+        <button routerLink="/add-user">Add Employee</button>
+        <button routerLink="/add-admin">Add Admin</button>
+    </div>
+</div>
+
+<div *ngIf="currentData === 'employeeData'">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Employee ID</th>
+                <th>District</th>
+                <th>Contact Info</th>
+                <!-- Add more headers as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employeeData">
+                <td>{{ employee.employeeId }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.district }}</td>
+                <td>{{ employee.contactInfo }}</td>
+                <!-- Add more data cells as needed -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="currentData === 'attendance'">
+    <h2>Attendance</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let employee of employeeData">
+                <tr *ngFor="let attendance of employee.attendance">
+                    <td>{{ attendance.name }}</td>
+                    <td>{{ attendance.date | date }}</td>
+                    <td>{{ attendance.loginTime | date:'shortTime' }}</td>
+                    <td>{{ attendance.logoutTime | date:'shortTime' }}</td>
+                    <td>{{ attendance.status }}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="currentData === 'leave'">
+    <h2>Leave</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let employee of employeeData">
+                <tr *ngFor="let leave of employee.leaves">
+                    <td>{{ leave.dateFrom | date }}</td>
+                    <td>{{ leave.dateTo | date }}</td>
+                    <td>{{ leave.reason }}</td>
+                    <td>{{ leave.approved ? 'Approved' : 'Not Approved' }}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

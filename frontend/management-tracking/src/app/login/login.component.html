@@ -1,0 +1,30 @@
+<body>
+<div class="login-container">
+   
+    <div class="login-form">
+
+        <h1>EMPLOYEE LOGIN</h1>
+        <label>
+            Username:
+            <input [(ngModel)]="employeeData.name" type="text">
+        </label>
+        <label>
+            Password:
+            <input [(ngModel)]="employeeData.password" type="password">
+        </label>
+        <button (click)="login()">Login</button>
+    </div>
+    <div class="login-form">
+        <h1>ADMIN LOGIN</h1>
+        <label>
+            Username:
+            <input [(ngModel)]="adminData.name" type="text">
+        </label>
+        <label>
+            Password:
+            <input [(ngModel)]="adminData.password" type="password">
+        </label>
+        <button (click)="adminLogin()">Login</button>
+    </div>
+</div>
+</body>

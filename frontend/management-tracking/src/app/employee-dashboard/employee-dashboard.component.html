@@ -1,0 +1,73 @@
+<div class="buttons-container">
+    <button (click)="showData('attendance')">Show Attendance</button>
+    <button (click)="showData('leave')">Show Leave</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Employee ID</th>
+            <th>District</th>
+            <th>Contact Info</th>
+            <!-- Add more headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ employeeData.employeeId }}</td>
+            <td>{{ employeeData.name }}</td>
+            <td>{{ employeeData.district }}</td>
+            <td>{{ employeeData.contactInfo }}</td>
+            <!-- Add more data cells as needed -->
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="currentData === 'attendance'">
+    <h2>Attendance</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let attendance of employeeData.attendance">
+                <td>{{ attendance.name }}</td>
+                <td>{{ attendance.date | date }}</td>
+                <td>{{ attendance.loginTime | date:'shortTime' }}</td>
+                <td>{{ attendance.logoutTime | date:'shortTime' }}</td>
+                <td>{{ attendance.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Display leave data -->
+<div *ngIf="currentData === 'leave'">
+    <h2>Leave</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let leave of employeeData.leaves">
+                <td>{{ leave.dateFrom | date }}</td>
+                <td>{{ leave.dateTo | date }}</td>
+                <td>{{ leave.reason }}</td>
+                <td>{{ leave.approved ? 'Approved' : 'Not Approved' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

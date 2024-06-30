@@ -1,0 +1,10 @@
+<div class="card">
+    <h2>Create Admin</h2>
+    <form (ngSubmit)="createAdmin()">
+        <input [(ngModel)]="admin.name" name="name" placeholder="Name" required>
+        <input [(ngModel)]="admin.contactInfo" name="contactInfo" placeholder="Contact Info" required>
+        <input [(ngModel)]="admin.password" name="password" type="password" placeholder="Password" required>
+        <input [(ngModel)]="admin.role" name="role" placeholder="Role" required>
+        <button type="submit">Create</button>
+    </form>
+</div>
